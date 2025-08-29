@@ -1,3 +1,4 @@
+
 repeat wait() until game:IsLoaded()
 
 local Players = game:GetService("Players")
@@ -810,32 +811,12 @@ end)
 CheckButton.MouseButton1Click:Connect(function()
     local keyText = KeyTextbox.Text
     
-    if keyText ~= "c 2.0kit" then
-        StatusLabel.Text = "Key Status: Invalid"
-        StatusLabel.TextColor3 = Color3.fromRGB(255, 85, 85)
-        createNotification("Invalid", "The key you entered is invalid.", 5, Color3.fromRGB(255, 85, 85), ScreenGui)
+    if keyText == "" then
+        StatusLabel.Text = "Key Status: Empty"
+        StatusLabel.TextColor3 = Color3.fromRGB(255, 85, 85) 
+        createNotification("Error", "Please enter a key", 5, Color3.fromRGB(255, 85, 85), ScreenGui)
         return
     end
-    
-    StatusLabel.Text = "Key Status: Valid"
-    StatusLabel.TextColor3 = Color3.fromRGB(85, 255, 127)
-    createNotification("Success", "Your key is valid!", 5, Color3.fromRGB(85, 255, 127), ScreenGui)
-    
-    -- Si tu veux, tu peux automatiser la sauvegarde et l'exécution du script ici
-    pcall(function() writefile("Key.txt", keyText) end)
-    
-    if autoExecuteEnabled then
-        local execSuccess, execError = executeScript(keyText)
-        if not execSuccess then
-            createNotification("Script Error", execError, 5, Color3.fromRGB(255, 85, 85), ScreenGui)
-            return
-        end
-        task.delay(1, function()
-            ScreenGui:Destroy()
-        end)
-    end
-end)
-
     
     if not isGameSupported() then
         StatusLabel.Text = "Key Status: Game Not Supported"
