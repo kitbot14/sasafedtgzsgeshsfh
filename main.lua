@@ -1,12 +1,3 @@
-local key = "c 2.0kit"
-local userKey = "keyText"  -- Remplacez ceci par la méthode d'entrée de la clé de l'utilisateur
-
-if userKey ~= key then
-    print("Clé invalide. Accès refusé.")
-    return
-end
-
-
 repeat wait() until game:IsLoaded()
 
 local Players = game:GetService("Players")
